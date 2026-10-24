@@ -1,0 +1,11 @@
+{
+  "name": "war-mode-telegram-bot",
+  "version": "1.0.0",
+  "description": "Digital Bodyguard - 15-minute Brutal Reality Checks via Telegram",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js",
+    "test-slap": "node bot.js --once"
+  }
+}
