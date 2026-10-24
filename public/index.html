@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAR MODE // Digital Bodyguard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "JetBrains Mono", monospace; }
+    body { background: #070707; color: #ececec; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+    .container { width: 100%; max-width: 640px; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; background: rgba(0, 255, 102, 0.15); color: #00ff66; border: 1px solid #00ff66; }
+    h1 { font-size: 32px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .subtitle { color: #777; font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+    .card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+    .btn-group { display: flex; gap: 12px; margin-top: 20px; }
+    button { flex: 1; padding: 14px 20px; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: 0.15s ease; }
+    .btn-primary { background: #00ff66; color: #000; }
+    .btn-primary:hover { background: #00cc52; }
+    .quote-box { background: #161616; border-left: 3px solid #00ff66; padding: 14px; border-radius: 0 4px 4px 0; font-size: 14px; line-height: 1.4; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">WAR MODE DEPLOYED</div>
+    <h1>DIGITAL BODYGUARD</h1>
+    <p class="subtitle">Cloud Cron Engine active on Vercel. Fires every 15 minutes to your phone.</p>
+
+    <div class="card" style="text-align: center;">
+      <h3 style="font-size: 16px; margin-bottom: 8px;">Trigger Test Reality Check</h3>
+      <p style="color: #666; font-size: 13px;">Hit the button below to test immediate push delivery to your phone.</p>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="triggerCron()">⚡ TEST SLAP NOW</button>
+      </div>
+      <div id="result" class="quote-box" style="display: none; text-align: left;"></div>
+    </div>
+  </div>
+
+  <script>
+    async function triggerCron() {
+      const box = document.getElementById('result');
+      box.style.display = 'block';
+      box.innerText = 'Triggering cloud slap...';
+      try {
+        const res = await fetch('/api/cron');
+        const data = await res.json();
+        if (data.quote) {
+          box.innerHTML = '<strong>Delivered to phone:</strong><br>' + data.quote;
+        } else {
+          box.innerHTML = '<strong>Status:</strong> ' + JSON.stringify(data);
+        }
+      } catch (e) {
+        box.innerText = 'Error: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
